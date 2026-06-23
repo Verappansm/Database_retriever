@@ -1,17 +1,17 @@
 # RUN using command streamlit run main.py
 from langchain_openai.llms import OpenAI
 import os   
-#from apikey import openai_key    #add your openai api key to the apikey file
+from apikey import openai_key    #add your openai api key to the apikey file
 import streamlit as st
 import pymysql
 import pandas as pd
 
-#os.environ['OPENAI_API_KEY'] = openai_key
+os.environ['OPENAI_API_KEY'] = openai_key
 llm = OpenAI(temperature=0.6)
 
 
 db_user = "root"
-db_pass = ""    # Enter your database password here
+db_pass = "22bce1313"    # Enter your database password here
 db_host = "localhost"
 db_name = "sales_inventory"
 
