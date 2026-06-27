@@ -1,3 +1,31 @@
+# =============================================================================
+# Version 3 — Real User Auth via Database (SHA-256 Password Hashing)
+# =============================================================================
+# What it does:
+#   Replaces the fake login with a real registration/login system backed by
+#   a `users` table in MySQL. Passwords are stored as SHA-256 hashes.
+#   Supports Sign Up and Login flows with Streamlit session state persistence.
+#
+# Tech stack:
+#   - Streamlit + session state (UI)
+#   - LangChain + OpenAI (LLM)
+#   - PyMySQL (MySQL connector)
+#   - pandas (result display)
+#   - hashlib (SHA-256 password hashing)
+#
+# How to run:
+#   1. Add your OpenAI key to apikey.py
+#   2. Set your MySQL credentials in the db_* variables below
+#   3. Create a users table first:
+#      CREATE TABLE users (username VARCHAR(50) PRIMARY KEY, password VARCHAR(64), role VARCHAR(20));
+#   4. streamlit run version3.py
+#
+# Limitations:
+#   - SHA-256 without a salt is not secure for production password storage
+#   - Database credentials still hardcoded in source
+#   - Only supports MySQL, single hardcoded database
+# =============================================================================
+
 import os
 import streamlit as st
 import pymysql

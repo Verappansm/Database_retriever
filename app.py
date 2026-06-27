@@ -15,14 +15,13 @@ from typing import Optional, Dict, Any, List, Tuple
 import bcrypt
 from cryptography.fernet import Fernet
 import hashlib
-import secrets
 
 # --- LLMs ---
 from openai import OpenAI
 import google.generativeai as genai
 
 # --- Databases ---
-from sqlalchemy import create_engine, text, inspect, MetaData
+from sqlalchemy import create_engine, text, inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -521,7 +520,7 @@ if up is not None:
                 if create_and_load:
                     cols_sql = ", ".join([f'"{c}" {edited_types[c]}' for c in df.columns])
                     conn.execute(text(f'CREATE TABLE IF NOT EXISTS "{table_name}" ({cols_sql});'))
-                    df.to_sql(table_name, con=conn.connection, if_exists="append", index=False)
+                    df.to_sql(table_name, con=conn, if_exists="append", index=False)
                     st.success(f"Table {table_name} created/updated with {len(df)} rows.")
                 else:
                     st.info("Nothing applied (checkbox not selected).")
@@ -614,7 +613,7 @@ if voice_text:
     # Provide a short confirmation then rerun so the text_area updates immediately
     st.success(f"✅ Voice recognized and pasted into input: {voice_text[:50]}...")
     # Rerun to ensure the text_area (which was rendered earlier) picks up the new session_state value
-    st.experimental_rerun()
+    st.rerun()
 else:
     # Keep the UI clean: only show a subtle info when nothing captured
     st.info("🎤 Waiting for voice input or no transcribed text yet.")

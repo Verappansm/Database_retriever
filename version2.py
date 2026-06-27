@@ -1,4 +1,28 @@
-# RUN using command: streamlit run main.py
+# =============================================================================
+# Version 2 — Role-Based Access Control (Hardcoded Credentials)
+# =============================================================================
+# What it does:
+#   Adds a login screen with three roles: Admin, Manager, Employee. Each role
+#   sees a different view. Admins and Managers can ask natural-language questions;
+#   Employees can only browse specific tables via a dropdown.
+#
+# Tech stack:
+#   - Streamlit (UI)
+#   - LangChain + OpenAI (LLM)
+#   - PyMySQL (MySQL connector)
+#   - pandas (result display)
+#
+# How to run:
+#   1. Add your OpenAI key to apikey.py
+#   2. Set your MySQL credentials in the db_* variables below
+#   3. streamlit run version2.py
+#   Default logins: admin/admin123  |  manager/manager123  |  employee/employee123
+#
+# Limitations:
+#   - Credentials hardcoded in source — not real auth, easily bypassed
+#   - Only supports MySQL, single hardcoded database
+# =============================================================================
+
 import os
 import streamlit as st
 import pymysql

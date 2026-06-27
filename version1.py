@@ -1,4 +1,28 @@
-# RUN using command streamlit run main.py
+# =============================================================================
+# Version 1 — Basic Natural Language to SQL Prototype
+# =============================================================================
+# What it does:
+#   Connects to a hardcoded local MySQL (sales_inventory) database, reads its
+#   schema, and uses OpenAI via LangChain to convert a plain-English question
+#   into SQL, executes it, and displays the result in Streamlit.
+#
+# Tech stack:
+#   - Streamlit (UI)
+#   - LangChain + OpenAI (LLM)
+#   - PyMySQL (MySQL connector)
+#   - pandas (result display)
+#
+# How to run:
+#   1. Add your OpenAI key to apikey.py
+#   2. Set your MySQL credentials in the db_* variables below
+#   3. streamlit run version1.py
+#
+# Limitations:
+#   - No authentication whatsoever
+#   - Database credentials hardcoded in source
+#   - Only supports MySQL, single hardcoded database
+# =============================================================================
+
 from langchain_openai.llms import OpenAI
 import os   
 from apikey import openai_key    #add your openai api key to the apikey file

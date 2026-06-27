@@ -1,4 +1,33 @@
-# RUN: streamlit run main.py
+# =============================================================================
+# Version 4 — Encrypted Credentials + Voice Input (Experimental Build)
+# =============================================================================
+# What it does:
+#   Fully-featured version with encrypted local credential storage (PBKDF2 +
+#   Fernet), bcrypt password hashing, multi-LLM support (OpenAI + Gemini),
+#   multi-database support (MySQL, PostgreSQL, SQLite), Excel-to-table upload,
+#   and voice-to-text query input. Experimental build that preceded app.py.
+#
+# Tech stack:
+#   - Streamlit + streamlit-mic-recorder (UI + voice input)
+#   - OpenAI SDK + Google Generative AI SDK (LLM providers)
+#   - SQLAlchemy (DB connection + schema introspection)
+#   - PyMySQL / psycopg2-binary (MySQL / PostgreSQL drivers)
+#   - bcrypt (password hashing)
+#   - cryptography / Fernet (credential encryption, PBKDF2 key derivation)
+#   - pandas (result display)
+#
+# How to run:
+#   1. pip install -r requirements.txt
+#   2. streamlit run version4.py
+#   3. Register a user, then save your API key and DB connection inside the app
+#
+# Known issues in this build (all fixed in app.py):
+#   - Gemini SQL generation intentionally injects semantic errors into joins
+#   - Voice input handling duplicated, causing redundant reruns
+#   - Uses deprecated st.experimental_rerun() in one code path
+#   - "own model" provider option silently falls through to Gemini
+# =============================================================================
+
 import os
 import io
 import json
